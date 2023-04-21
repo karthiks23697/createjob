@@ -2,7 +2,6 @@
 import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
-// import Netflix from '/src/images/netflix.png';
 
 const Card=()=>
 
@@ -33,7 +32,7 @@ return (
                   <article className="overflow-hidden rounded-lg border-solid border-2 border-black-500 p-2 px-6 py-4">
                     <div className="flex ...">
                       <div className="flex-none ... w-auto">
-                      {/* <img className="pr-4 rounded w-auto" src={Netflix} alt="imag" /> */}
+                      <img className="pr-4 rounded w-auto" src="https://imgtr.ee/images/2023/04/21/0ue11.png" alt="imag" />
                       </div>
                       <div className="flex-auto w-64 ...">
                       <img className="pr-4 rounded w-10 float-right" src="https://www.freeiconspng.com/thumbs/edit-icon-png/edit-editor-pen-pencil-write-icon--4.png" alt="imag" />
