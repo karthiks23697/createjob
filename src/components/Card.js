@@ -3,9 +3,8 @@ import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 
-const Card=()=>
-
-{
+const Card = (props) => {
+    const {handleModal} = props;
     const [responseData, setResponseData] = useState([]);
 
     const getDatafromMock = (event) => {
@@ -27,6 +26,7 @@ const Card=()=>
 return (
 	<div className="container my-12 mx-auto px-6 md:px-12">
           <div className="flex flex-wrap -mx-1 lg:-mx-6">
+
 					{responseData.map((data, i)=> { 
             return <div key={i} className="my-1 px-1 w-full md:w-1/2 lg:my-6 lg:px-6 lg:w-1/2">
                   <article className="overflow-hidden rounded-lg border-solid border-2 border-black-500 p-2 px-6 py-4">
@@ -35,7 +35,7 @@ return (
                       <img className="pr-4 rounded w-auto" src="https://imgtr.ee/images/2023/04/21/0ue11.png" alt="imag" />
                       </div>
                       <div className="flex-auto w-64 ...">
-                      <img className="pr-4 rounded w-10 float-right" src="https://www.freeiconspng.com/thumbs/edit-icon-png/edit-editor-pen-pencil-write-icon--4.png" alt="imag" />
+                      <img className="pr-4 rounded w-10 float-right" src="https://www.freeiconspng.com/thumbs/edit-icon-png/edit-editor-pen-pencil-write-icon--4.png" alt="imag" onClick={e=>handleModal('edit', data)} />
                       <img className="pr-4 rounded w-11 float-right" src="https://cdn-icons-png.flaticon.com/512/3687/3687412.png" alt="imag" onClick={e => deleteDataMock(e, data)} />
                       <h4 className="text-lg no-underline hover:underline text-black">{data.title}</h4>
                       <h6>{data.companyName}</h6>

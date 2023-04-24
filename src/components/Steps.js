@@ -2,18 +2,19 @@ import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 
-const Steps=()=>
-{
-  const [jobTitle, setJobTitle] = useState('');
-  const [companyName, setCompanyName] = useState('');
-  const [industry, setIndustry] = useState('');
-  const [location, setLocation] = useState('');
-  const [remoteType, setRemoteType] = useState('');
-  const [expMin, setExpMin] = useState('');
-  const [expMax, setExpMax] = useState('');
-  const [salMin, setSalMin] = useState('');
-  const [salMax, setSalMax] = useState('');
-  const [totalEmp, setTotalEmp] = useState('');
+const Steps=(props)=>{
+  const {stepsData} = props;
+  const [jobTitle, setJobTitle] = useState(stepsData?stepsData.title: '');
+  const [companyName, setCompanyName] = useState(stepsData?stepsData.companyName: '');
+  const [industry, setIndustry] = useState(stepsData?stepsData.industry: '');
+  const [location, setLocation] = useState(stepsData?stepsData.location: '');
+  const [remoteType, setRemoteType] = useState(stepsData?stepsData.remoteType: '');
+  const [expMin, setExpMin] = useState(stepsData?stepsData.experienceMin: '');
+  const [expMax, setExpMax] = useState(stepsData?stepsData.experienceMax: '');
+  const [salMin, setSalMin] = useState(stepsData?stepsData.salaryMin: '');
+  const [salMax, setSalMax] = useState(stepsData?stepsData.salaryMax: '');
+  const [totalEmp, setTotalEmp] = useState(stepsData?stepsData.totalEmployee: '');
+  const [radioValue, setRadioValue] = useState(stepsData?stepsData.applyType: '');
   const [headLine, setHeadLine] = useState(false);
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -28,11 +29,11 @@ const Steps=()=>
       salaryMin: salMin,
       salaryMax: salMax,
       totalEmployee: totalEmp,
-      applyType: 'applyType'
+      applyType: radioValue
     })
   };
 return (
-    <form  onSubmit={handleSubmit} className="mx-auto mt-5 max-w-xl sm:mt-5">
+    <form  onSubmit={handleSubmit} id="applicationform" name ="applicationform" className="mx-auto mt-5 max-w-xl sm:mt-5">
         {!headLine &&
             <div>
                 <div className="mx-auto flex mb-5 max-w-2xl ">
@@ -248,18 +249,22 @@ return (
                     />
                 </div>
                 </div>
-                <div>
+                <div class="sm:col-span-2">
                 <label htmlFor="applytype" className="block text-sm font-semibold leading-6 text-gray-900">
                     Apply Type
                 </label>
                 </div>
-                <div className="flex items-center pl-3">
-                    <input id="list-radio-license" type="radio" value="" name="list-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                    <label htmlFor="list-radio-license" className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Quick Apply </label>
-                </div>
-                <div className="flex items-center pl-3">
-                    <input id="list-radio-id" type="radio" value="" name="list-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                    <label htmlFor="list-radio-id" className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">External Apply</label>
+                <div class="flex">
+                    <div className=" items-center">
+                        <input id="list-radio-license" type="radio" value="Quick Apply" onChange={(event) =>
+                        setRadioValue(event.target.value)} name="list-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                        <label htmlFor="list-radio-license" className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Quick Apply </label>
+                    </div>
+                    <div className=" items-center">
+                        <input id="list-radio-id" type="radio" value="External Apply" onChange={(event) =>
+                        setRadioValue(event.target.value)} name="list-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                        <label htmlFor="list-radio-id" className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">External Apply</label>
+                    </div>
                 </div>
             </div>
             <div className="mx-auto  mt-5 max-w-2xl ">
